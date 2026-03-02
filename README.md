@@ -1,121 +1,122 @@
-# 🎯 AI Tutor Agent — Agentic Education System
+🚀 AI Tutor Multi-Agent System (AI-Native)
 
-An AI-powered multi-agent education system that generates grade-wise explanations, creates MCQs, reviews content quality, and automatically refines outputs.
+An AI-native, multi-agent education system that generates grade-wise explanations, creates curriculum-aligned MCQs, evaluates output quality, and automatically refines responses through a reviewer feedback loop.
 
-This project demonstrates an **AI-native, agent-based architecture** built for scalable EdTech applications.
+This project demonstrates AI-first system design, autonomous agent orchestration, and measurable output quality — built for scalable EdTech deployment.
 
----
+🎯 Problem Specialization (Priority Definition)
+❗ The Problem
 
-⚙️ How the System Works
+Current AI tutoring tools suffer from:
 
-The AI Tutor Agent follows a two-tier architecture:
+Generic explanations not aligned to grade level
 
-🔹 FastAPI Backend — handles AI logic and APIs
+Poor MCQ quality and lack of curriculum awareness
 
-🔹 Streamlit Frontend — provides user interface
+No automatic quality verification
 
-Both services run separately but communicate via HTTP APIs.
+Heavy teacher dependency for content validation
 
-🔧 Backend — How It Works
+Single-shot LLM responses without refinement
 
-The backend is built using FastAPI and is responsible for:
+In fast-growing EdTech environments, content quality and personalization at scale is the primary bottleneck.
 
-Running the Generator Agent
+🧠 Why This Is My #1 Priority
 
-Running the Reviewer Agent
+I prioritized this problem because:
 
-Managing the refinement loop
+📈 Personalized learning demand is exploding
 
-Calling the Groq LLM
+👩‍🏫 Teacher bandwidth is limited globally
 
-Returning structured JSON responses
+🤖 Most AI tutors are single-pass and unreliable
 
-▶️ Start the Backend
+🔁 Multi-agent refinement significantly improves educational quality
 
-From the backend folder:
+⚡ Schools need production-ready AI tutoring pipelines, not demos
 
-uvicorn main:app --reload
-✅ Expected Output
-Uvicorn running on http://127.0.0.1:8000
-Application startup complete.
-🌐 Backend Endpoint Flow
-Frontend Request → FastAPI → Generator Agent → Reviewer Agent → Refinement → Response
+Hypothesis:
 
-When the backend is running:
+Multi-agent review loops can materially improve educational output quality compared to single-LLM systems.
 
-API base URL:
+This project is built to validate that hypothesis.
 
-http://127.0.0.1:8000
+🏗️ System Architecture (AI-Native)
+Two-Tier Architecture
 
-Interactive docs available at:
+Backend: FastAPI (AI orchestration layer)
+Frontend: Streamlit (user interaction layer)
 
-http://127.0.0.1:8000/docs
-🎨 Frontend — How It Works
+User → Streamlit → FastAPI → Generator Agent
+                                 ↓
+                           Reviewer Agent
+                                 ↓
+                          Refinement Loop
+                                 ↓
+                           Final Structured Output
+🤖 Agent Design
+1️⃣ Generator Agent
 
-The frontend is built using Streamlit and is responsible for:
+Responsibilities
 
-Collecting user input (topic, grade, etc.)
+Generate grade-appropriate explanation
 
-Sending requests to the FastAPI backend
+Create curriculum-aligned MCQs
 
-Displaying explanations and MCQs
+Produce structured JSON output
 
-Showing refined output
+Design Goal
 
-⚠️ Important: Frontend does NOT run AI directly — it calls the backend API.
+Maximize educational relevance on first pass.
 
-▶️ Start the Frontend
+2️⃣ Reviewer Agent
 
-From the frontend folder:
+Responsibilities
 
-streamlit run app.py
-✅ Expected Output
-Local URL: http://localhost:8501
+Evaluate explanation clarity
 
-Open this URL in your browser.
+Validate MCQ quality
 
-🔄 Frontend–Backend Communication
+Detect hallucinations
 
-The Streamlit app sends HTTP requests to FastAPI.
+Trigger refinement when needed
 
-Flow:
-User → Streamlit UI → FastAPI API → AI Agents → Response → Streamlit Display
-⚠️ Important Setup Notes
+Key Insight
 
-✅ Start backend first
-✅ Then start frontend
-✅ Ensure backend URL in Streamlit is correct
+The reviewer acts as an automated academic quality gate.
 
-Example inside app.py:
+🔁 Refinement Loop (Core Innovation)
 
-API_BASE_URL = "http://127.0.0.1:8000"
-🧪 How to Verify Everything Works
-Step 1 — Backend check
+Unlike single-pass systems:
 
-Open:
+Generator produces draft
 
-http://127.0.0.1:8000/docs
+Reviewer scores quality
 
-If Swagger UI opens → backend is working ✅
+If below threshold → auto-refinement
 
-Step 2 — Frontend check
+Loop continues until quality passes
 
-Open:
+This creates self-healing educational output.
 
-http://localhost:8501
+📊 Performance Evaluation (Custom Metric)
+Education Quality Score (EQS)
 
-If Streamlit UI appears → frontend is working ✅
+To quantitatively evaluate the agent, I designed a composite metric.
 
-Step 3 — End-to-end test
+Formula
+EQS = (Explanation Accuracy × 0.4)
+    + (MCQ Quality × 0.3)
+    + (Reviewer Pass Rate × 0.3)
 
-Enter a topic
+Final Score scaled to: 0–10,000
+🧪 Measurement Methodology
+Test Setup
 
-Select grade
+50 diverse academic topics
 
-Click generate
+Grades: 3–10
 
-Verify explanation + MCQs appear
+Manual rubric evaluation
 
-✅ If yes → full pipeline working
-
-
+Automated reviewer scoring
